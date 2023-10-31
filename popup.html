@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="output.css" rel="stylesheet">
+    <style>
+        .body {
+            min-width: 300px;
+            min-height: 200px;
+        }
+    </style>
+    <title>BASC: BAtch Site Clone extension</title>
+</head>
+
+<body>
+    <div>
+        <RadioGroupItem value="paypal" id="paypal" className="peer sr-only" />
+        <Label htmlFor="paypal"
+            className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+            <Icons.paypal className="mb-3 h-6 w-6" />
+            Paypal
+        </Label>
+    </div>
+    <div>
+        <RadioGroupItem value="apple" id="apple" className="peer sr-only" />
+        <Label htmlFor="apple"
+            className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+            <Icons.apple className="mb-3 h-6 w-6" />
+            Apple
+        </Label>
+    </div>
+    </RadioGroup>
+    <!-- Этот файл пока оставляем пустым, так как основное содержимое будет добавлено на веб-страницу через contentScript.js. -->
+
+    <script src="popup.bundle.js"></script>
+</body>
+
+</html>
