@@ -84,7 +84,7 @@ textElement.className = "text-muted-foreground"
 textElement.innerText = '   [...]  - parse / validate array'
 
 coll3.appendChild(msidList);
-coll2.appendChild(textElement);
+coll3.appendChild(textElement);
 
 coll2.appendChild(label2);
 coll2.appendChild(coll3);

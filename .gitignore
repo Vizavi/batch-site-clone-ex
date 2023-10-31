@@ -1,0 +1,4 @@
+node_modules
+node_modules
+dist/background.bundle.js.LICENSE.txt
+dist/contentScript.bundle.js.LICENSE.txt
