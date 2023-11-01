@@ -16,7 +16,7 @@ export const getCookie = (name = 'XSRF-TOKEN') => {
     return null;
 };
 
-const checkWixCLient = (thisUser) => {
+const checkWixCLient = async (thisUser) => {
     const wixCLientCookies = getCookie('wixClient');
     if (!wixCLientCookies || wixCLientCookies.length == 0) {
         throw new Error('Missing Wix Client cookies', thisUser);
@@ -32,10 +32,10 @@ const checkWixCLient = (thisUser) => {
 
 
 export const getCurrentUserData = async (thisUser) => {
-    thisUser = checkWixCLient(thisUser);
+    thisUser = await checkWixCLient(thisUser);
     console.log('thisUser :',thisUser);
     if (thisUser.isWix) {
-        await getUserEmail(thisUser);
+        await getUserEmail(thisUser, thisUser.userId);
        // userIdInput.value = userDaTA.userEmail;
     } else {
         throw new Error('Not Wix user', thisUser);

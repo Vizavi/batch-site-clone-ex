@@ -39,7 +39,7 @@ export const cloneSite = async (sourceMsid, targetUserId) => {
     newGlobalTest.persistantMSID = clonnedSiteData.metaSiteId;
     newGlobalTest.persistantMetaSiteName = clonnedSiteData.metaSiteName;
     newGlobalTest.persistantSiteName = clonnedSiteData.siteName;
-    newGlobalTest.editorType = clonnedSiteData.editorTypeInfo.editorTypeTypeInfo.editorType;
+    newGlobalTest.editorType = clonnedSiteData.editorInfo.editorTypeInfo.editorType;
     newGlobalTest.originalUserId = sourceUserId;
     newGlobalTest.originalMSID = sourceMsid;
     newGlobalTest.originalMetaSiteName = sourceMetaSiteName;
