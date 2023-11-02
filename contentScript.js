@@ -246,11 +246,11 @@ sidePanelGrid.appendChild(executeBtn);
 
 
 
-// const spinner = document.createElement('div');
-// spinner.className = 'loader';
-// spinner.id = 'spinner';
+ const spinner2 = document.createElement('div');
+ spinner2.className = 'loader';
+ spinner2.id = 'spinner2';
 
-d//ocument.body.appendChild(sidePanel);
+//ocument.body.appendChild(sidePanel);
 
 textElement.addEventListener('click', async () => {
     if (msidList.value.length > 0) {
@@ -261,6 +261,8 @@ textElement.addEventListener('click', async () => {
     }
 })
 
+
+
 executeBtn.addEventListener('click', async () => {
     if (thisUser.isWix) {
         const targetUserId = userIdList[targetOption];
@@ -268,7 +270,7 @@ executeBtn.addEventListener('click', async () => {
         executeBtn.disabled = true;
 
         grid.classList.add('hidden');
-        sidePanelGrid.appendChild(spinner);
+        sidePanelGrid.appendChild(spinner2);
 
 
        // sidePanelPreloader.classList.remove('hidden');
