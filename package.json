@@ -20,8 +20,8 @@
   "scripts": {
     "build": "webpack --config webpack.config.js"
   },
-  "name": "batch-clone-site-ex",
-  "description": "��#\u0000 \u0000b\u0000a\u0000t\u0000c\u0000h\u0000-\u0000s\u0000i\u0000t\u0000e\u0000-\u0000c\u0000l\u0000o\u0000n\u0000e\u0000-\u0000e\u0000x\u0000\r\u0000 \u0000",
+  "name": "BACS: [BA]tch [C]lone [S]ite extension",
+  "description": "Extension for cloning sites in batch mode",
   "version": "1.0.0",
   "main": "background.js",
   "repository": {

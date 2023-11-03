@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "BASC",
+    "name": "BACS",
     "version": "1.57",
-    "description": "BAtch Site Clone extension.",
+    "description": "BACS: [BA]tch [C]lone [S]ite extension",
     "content_security_policy": {
         "extension_pages": "script-src 'self'; object-src 'self';"
     },

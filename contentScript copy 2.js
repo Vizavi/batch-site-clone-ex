@@ -1,4 +1,5 @@
-//document.addEventListener('DOMContentLoaded', function() { /* ... */ }) 
+document.addEventListener('DOMContentLoaded', function() { /* ... */ }) 
+
 import { getCurrentUserData } from './common/authAndCookies.js';
 import { cloneSite } from './common/cloneSite.js';
 import { parseStringToArray } from './common/utils.js';
@@ -21,13 +22,7 @@ let msidList2 = [];
 let userIdList =[];
 let targetOption ='0'
 
-getSiteUrl = (async () => {
-    const currenUrl = async (window.location.href)
-    return currenUrl;
-    })();
-
-await chrome.runtime.onMessage.addListener(handleMessage);
-const resTi= await ()
+chrome.runtime.onMessage.addListener(handleMessage);
 
 function createElement(tag, options) {
     const element = document.createElement(tag);
@@ -47,14 +42,46 @@ console.log('currentURL', currentURL);
 
 const sidePanel = createElement('div', { className: 'side-panel hidden w-1/4 h-screen bg-gray-100 p-4 fixed right-0 top-0 z-50', id: 'sidePanel' });
 
+function handleSliderInput(event) {
+    thisUser.targetOption = event.target.value;
+    updateButtons(thisUser.targetOption);
+}
 
-const grid = createElement('div', { className: 'grid grid-cols-2 gap-4', id: 'grid' })
+function handleButtonClick(event) {
+    const button = event.target;
+    thisUser.targetOption = button.getAttribute('data-target-option');
+    document.getElementById('slider').value = thisUser.targetOption;
+    updateButtons(thisUser.targetOption);
+}
+
+// Attach event listeners
+document.getElementById('slider').addEventListener('input', handleSliderInput);
+// Assuming buttons have a common class 'option-button'
+document.querySelectorAll('.option-button').forEach(button => {
+    button.addEventListener('click', handleButtonClick);
+});
 
 
+function updateButtons(selectedOption) {
+    document.querySelectorAll('.option-button').forEach(button => {
+        const option = button.getAttribute('data-target-option');
+        button.className = option === selectedOption ? selectedOptionClass : notSelectedOptionClass;
+    });
+}
+
+async function handleExecuteClick() {
+    if (thisUser.isWix) {
+        // ... existing code ...
+    }
+}
+
+document.getElementById('executeBtn').addEventListener('click', handleExecuteClick);
 
 
-const reSimr = createElement('div', { className: 'relative rounded-xl overflow-auto p-8', id: 'singleColl' });
-const sidePanelGrid = sidePanel.appendChild(grid);
+const grid = createElement('div', { className: 'grid grid-cols-2 gap-4', id: 'grid' });
+
+
+const sidePanelGrid = sidePanel.appendChild(grid, {});
 //let preloadGrid = sidePanelPreloader.appendChild(grid);
 
 function handleMessage(message, sender, sendResponse) {
@@ -69,13 +96,10 @@ function handleMessage(message, sender, sendResponse) {
         } else {
 
             sidePanel.classList.add('hidden');
-
+            
         }
     }
 };
-//-----------------------------------------------------------------------------------------HELL STARTS HERE:;''''''''''''''''''''''''
-
-
 
 sidePanel.appendChild(sidePanelGrid);
 sidePanelGrid.classList.add('hidden');
@@ -91,7 +115,8 @@ coll.appendChild(userIdInput);
 
 const coll2 = createElement('div', {className: 'flex flex-col space-y-1.5'});
 
-const singleColl = createElement('div',{className:'relative rounded-xl overflow-auto p-8'});
+const singleColl = createElement('div',{userId:'relative rounded-xl overflow-auto p-8'});
+singleColl.className = "relative rounded-xl overflow-auto p-8";
 
 const singleCollDiv = createElement('div', "claclassNamessName:", 'max-w-xs mx-auto space-y-1');
 
@@ -101,8 +126,8 @@ const msidList = createElement('textarea', {id:msidList, rows:10, placeholder: '
 
 const textElement = createElement('span', {type:'text', className: `text p-2 border 2 border-dark-200/100 border-b-dark-200/100  px-4 py-2`, innerText: '[...]validate array', htmlFor: 'msidList'});
 
-const lbl = createElement('label', {msid: "", id:"lbl", type:"range", min:"0", max:"2", step:"1", value:"2", title: "Clonned site destination"});
-const msidNew = createElement('label', {htmlFor: 'MSID', id: 'newMSID'});
+const lbl = createElement('label', {msid: "", id:"slider", type:"range", min:"0", max:"2", step:"1", value:"2", title: "Clonned site destination"});
+const msidNew = createElement('label', {htmlFor: 'slider', id: 'sliderLabel'});
 
 singleCollDiv.appendChild(lbl);
 singleColl.appendChild(singleCollDiv)
@@ -117,11 +142,11 @@ const selectedOption = 'text-blue-500 items-center justify-center whitespace-now
 
 const leftButton = createElement('button', {innerText: 'Test Matrix', className: notSelecteOption, id: 'leftButton', targetOpyion: '0'});
 
-const middleButton = createElement('button', {innerText: 'Vasyl Velmyk', className: notSelecteOption, id: 'middleButton', targetOpyion: '1'});
+const middleButton = document.createElement('button', {innerText: 'Vasyl Velmyk', className: notSelecteOption, id: 'middleButton', targetOpyion: '1'});
 
-const rightButton = createElement('button', {innerText:"My account",className: selectedOption, id: 'rightButton', targetOpyion: '2'});
+const rightButton = document.createElement('button', {innerText:"My account",className: selectedOption, id: 'rightButton', targetOpyion: '2'});
 
-const buttonContainer = createElement('div', {className: "flex justify-between mt-3"});
+const buttonContainer = document.createElement('div', {className: "flex justify-between mt-3"});
 buttonContainer.appendChild(leftButton);
 buttonContainer.appendChild(middleButton);
 buttonContainer.appendChild(rightButton);
@@ -139,68 +164,59 @@ const executeBtn = createElement('button', {id: 'executeBtn', className: 'p-2 bg
 const spinner2 = createElement('div', {className: 'loader', id: 'spinner2'});
 
 const messageDiv = document.createElement('div', {id: 'messageDiv'});
-
 messageDiv.addEventListener('click', () => {
-    const validationLinke = 'https';
-
-if (currentURL.includes(validationLinke)) {
-    messageDiv.classList.add('hidden'); 
-   // sidePanelGrid.appendChild(labledInput);
-    sidePanelGrid.appendChild(msidListColl);
-    sidePanelGrid.appendChild(executeBtn);
-} else {
-    window.open(validationLinke, '_blank');
-    messageDiv.classList.remove('hidden');
-    sidePanelGrid.appendChild(messageDiv);
-}
+    window.open('https://bo.wix.com/um/', '_blank');
 });
 
-// Attach event listeners
-document.getElementById('slider').addEventListener('input', handleSliderInput);
-// Assuming buttons have a common class 'option-button'
-document.querySelectorAll('.option-button').forEach(button => {
-    button.addEventListener('click', handleButtonClick);
-});
 
-function updateButtons(selectedOption) {
-    document.querySelectorAll('.option-button').forEach(button => {
-        const option = button.getAttribute('data-target-option');
-        button.className = option === selectedOption ? selectedOptionClass : notSelectedOptionClass;
-    });
-}
-
-function handleSliderInput(event) {
-    thisUser.targetOption = event.target.value;
-    updateButtons(thisUser.targetOption);
-}
-
-function handleButtonClick(event) {
-    const button = event.target;
-    thisUser.targetOption = button.getAttribute('data-target-option');
-    document.getElementById('slider').value = thisUser.targetOption;
-    updateButtons(thisUser.targetOption);
-}
+//if (currentURL.includes('https://bo.wix.com/')) {
+    //messageDiv.classList.add('hidden');
+sidePanelGrid.appendChild(labledInput);
+sidePanelGrid.appendChild(msidListColl);
+sidePanelGrid.appendChild(executeBtn);
+//} else {
+   // messageDiv.classList.remove('hidden');
+ sidePanelGrid.appendChild(messageDiv);
+//}
 
 
-const findElementAndAttachEventListener = (id, eventType, handler) => {
-    const element = document.getElementById('some-element-id');
-if (element) {
-    element.addEventListener('click', someFunction);
-} else {
-    console.error('Element not found');
-}
-}
+// Обработчик клика на кнопку
+// executeBtn.addEventListener('click', () => {
+//     sidePanel.classList.add('hidden');
+//     // Тут можно добавить дополнительный код для обработки данных из полей ввода
+// });
 
+//const parsedMsidList = parseStringToArray(msidList.value);
+
+// leftButton.addEventListener('click', () => {
+// slider.value = '0'
+// leftButton.className = "text-blue-500 bg-transparent border border-blue-500 rounded px-4 py-2";
+// middleButton.className = "text-gray-400 bg-transparent border border-gray-400 rounded px-4 py-2"; // неактивный стиль        // активный стиль
+// rightButton.className = "text-gray-400 bg-transparent border border-gray-400 rounded px-4 py-2"; 
+// });
+
+// middleButton.addEventListener('click', () => {
+//     slider.value = '1'
+//     leftButton.className = "text-gray-400 bg-transparent border border-gray-400 rounded px-4 py-2";
+//     middleButton.className = "text-blue-500 bg-transparent border border-blue-500 rounded px-4 py-2";// неактивный стиль        // активный стиль        // неактивный стиль
+//     rightButton.className ="text-gray-400 bg-transparent border border-gray-400 rounded px-4 py-2"; 
+// });
+
+// rightButton.addEventListener('click', () => {
+//     slider.value = '2'
+//     leftButton.className = "text-gray-400 bg-transparent border border-gray-400 rounded px-4 py-2"; 
+//     middleButton.className = "text-gray-400 bg-transparent border border-gray-400 rounded px-4 py-2"; // неактивный стиль        // активный стиль
+//     rightButton.className = "text-blue-500 bg-transparent border border-blue-500 rounded px-4 py-2";
+// })
 
 slider.addEventListener('input', handleSliderInput);
-
-document.getElementById('executeBtn').addEventListener('click', handleExecuteClick);
 
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('option-button')) {
         handleButtonClick(event);
     }
 });
+
 
 //ocument.body.appendChild(sidePanel);
 document.addEventListener('click', function(event) {
@@ -228,8 +244,8 @@ executeBtn.addEventListener('click', async () => {
     }
 });
 
-async function handleExecuteClick() {
-    if (thisUser.isWix) {
-        //  ...
-    }
-}
+
+
+
+
+// XSRF-TOKEN

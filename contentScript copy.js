@@ -37,9 +37,7 @@ const currentURL = window.location.href;
 console.log('currentURL', currentURL);
 
 
-const sidePanel = document.createElement('div');
-sidePanel.className = 'side-panel hidden w-1/4 h-screen bg-gray-100 p-4 fixed right-0 top-0 z-50';
-sidePanel.id = 'sidePanel';
+const sidePanel = createElement('div', { className: 'side-panel hidden w-1/4 h-screen bg-gray-100 p-4 fixed right-0 top-0 z-50', id: 'sidePanel' });
 
 const grid = document.createElement('div');
 grid.className = 'grid grid-cols-2 gap-4';
