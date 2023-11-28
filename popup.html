@@ -16,11 +16,24 @@
 
 <body>
     <div>
+        <div role="tablist" aria-orientation="horizontal"
+            class="h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground grid w-full grid-cols-2"
+            tabindex="0" data-orientation="horizontal" style="outline: none;">
+            <button type="button" role="tab" aria-selected="true" aria-controls="radix-:rd:-content-account"
+                data-state="active" id="radix-:rd:-trigger-account"
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
+                tabindex="0" data-orientation="horizontal" data-radix-collection-item="">
+                Account
+            </button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="radix-:rd:-content-password"
+                data-state="inactive" id="radix-:rd:-trigger-password"
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow"
+                tabindex="-1" data-orientation="horizontal" data-radix-collection-item="">
+                Password
+            </button>
+        </div>
 
     </div>
-    </RadioGroup>
-    <!-- Этот файл пока оставляем пустым, так как основное содержимое будет добавлено на веб-страницу через contentScript.js. -->
-
     <script src="popup.bundle.js"></script>
 </body>
 

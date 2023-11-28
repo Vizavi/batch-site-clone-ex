@@ -18,6 +18,5 @@ module.exports = {
     },
   },
   plugins: [
-    // Если у вас есть какие-либо плагины Tailwind
   ],
 }
