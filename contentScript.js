@@ -136,9 +136,9 @@ function handleTextButtonClick(event) {
     const button = event.target;
     const textButtonId = button.getAttribute('id');
 
-    if (textButtonId === 'clearButton') {
+    if (button.id === 'clearButton') {
         msidList.msidInput.value = '';
-    } else if ( textButtonId === 'validateButton') {
+    } else if ( button.id === 'validateButton') {
         msidList.msidInput.value = JSON.stringify(parseStringToArray(rawMsidList), null, 2);
     }
 }
