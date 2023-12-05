@@ -23,7 +23,7 @@
                 "contentScript.bundle.js"
             ],
             "css": [
-                "output.css"
+                "bacsOutput.css"
             ]
         }
     ],

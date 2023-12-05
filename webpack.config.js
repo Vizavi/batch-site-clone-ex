@@ -31,7 +31,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: './manifest.json', to: 'manifest.json' },
-                { from: './output.css', to: 'output.css' },
+                { from: './bacsOutput.css', to: 'bacsOutput.css' },
                 { from: './icons', to: './icons' },
                 //  { from: './contentScript.js', to: 'contentScript.js' },
                 //  { from: './background.js', to: 'background.js' },

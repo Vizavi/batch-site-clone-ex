@@ -1,8 +1,7 @@
 import { label, textButton, tabButton, buttonStateClasses, collapsedElementTitleWithIcon } from "./baseElemnts";
 
-import { setAttributeIfItHasValue } from "./utils";
+import { setAttributeIfItHasValue } from "../../src/etc/utils.js";
 
-let nestedElenebtsList = [];
 
 let viewStates= {
     sidePanel: 'hidden',

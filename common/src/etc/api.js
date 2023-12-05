@@ -24,18 +24,19 @@ export const postGlobalTest = async (postItem) => {
     const data = await fetchData(url, postItem, 'POST');
 }
 
-export const getUserEmail = async (thisUser, userId) => {
-    const url = `https://bo.wix.com/user-manager-server/v1/relevant-users?userId=${userId}&paging.limit=1&paging.offset=0`
+export const getUserEmail = async (thisUser) => {
+    const url = `https://bo.wix.com/user-manager-server/v1/relevant-users?userId=${thisUser.userId}&paging.limit=1&paging.offset=0`
     const userDaTA = await fetchData(url);
-    console.log('User Data: ', userDaTA)
-    thisUser.userEmail = userDaTA.users[0].email;
+    //console.log('User Data: ', userDaTA)
+    if (userDaTA?.users.length < 1) throw new Error('User not found', thisUser);
+    return userDaTA.users[0].email;
 }
 
 export const getSourceUserId = async (sourceMsid) => {
     const url = `https://bo.wix.com/user-manager-server/v1/user/meta_site_id/${sourceMsid}`
     const data = await fetchData(url);
-    const id = data.user.id;
-    console.log("User id: " + id);
+    const id = data?.user.id;
+    if (!id) throw new Error('User not found', data);
     return id;
 };
 

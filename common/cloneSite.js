@@ -1,5 +1,5 @@
-import { getSourceUserId, getSourcetSiteMetaSiteName, fetchSiteClone, postGlobalTest, getDuplicatedSiteInfo  } from "./api";
-import { sleep } from "./utils";
+import { getSourceUserId, getSourcetSiteMetaSiteName, fetchSiteClone, postGlobalTest, getDuplicatedSiteInfo  } from "./src/etc/api.js";
+import { sleep } from "./src/etc/utils.js";
 
 // const targetUserId = "b5579173-171f-4d50-b95d-fb8f10674e69";
 // //const sourceMsid = "937eda05-e072-4e36-a739-11e22858c397";
@@ -25,7 +25,7 @@ export const cloneSite = async (sourceMsid, targetUserId) => {
     const targetPrefix = sourceMsid.split("-")[0];
     const sourceUserId = await getSourceUserId(sourceMsid);
     const sourceMetaSiteName = await getSourcetSiteMetaSiteName(sourceUserId, sourceMsid);
-    const targetMetaSiteName = `coqq-${targetPrefix}`;
+    const targetMetaSiteName = `ffg-${targetPrefix}`;
     // const targetMetaSiteName2 = ${targetPrefix}-mig;
 
 
@@ -33,6 +33,7 @@ export const cloneSite = async (sourceMsid, targetUserId) => {
     await sleep(5000);
 
     const clonnedSiteData = await getDuplicatedSiteInfo(targetUserId, targetMetaSiteName)
+    console.log('Clonned DataL: ', clonnedSiteData);
     // await cloneSite(sourceUserId,sourceMetaSiteName,targetUserId,targetMetaSiteName2);
     // await sleep(5000);
 

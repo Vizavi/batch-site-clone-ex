@@ -16,34 +16,37 @@ export const getCookie = (name = 'XSRF-TOKEN') => {
     return null;
 };
 
-const checkWixCLient = async (thisUser) => {
+const checkWixCLient = async () => {
     const wixCLientCookies = getCookie('wixClient');
     if (!wixCLientCookies || wixCLientCookies.length == 0) {
-        throw new Error('Missing Wix Client cookies', thisUser);
+        throw new Error('Missing Wix Client cookies');
         return;
     }
-    console.log(wixCLientCookies);
     const clientData = wixCLientCookies.split('|')
-    thisUser.userId = clientData[6];
-    thisUser.isWix = clientData[8] == 'wix';
+    const userId = clientData[6];
+    const isWix = clientData[8] == 'wix';
     console.log('clientData : ', clientData);
-    return thisUser
+    return {userId, isWix}
 }
 
 
 export const getCurrentUserData = async (thisUser) => {
-    thisUser = await checkWixCLient(thisUser);
-    console.log('thisUser :',thisUser);
-    if (thisUser.isWix) {
-        await getUserEmail(thisUser, thisUser.userId);
+    const user = thisUser
+    const wixClient = await checkWixCLient();
+    console.log('thisUser :',wixClient);
+    if (wixClient.isWix) {
+        wixClient.email = await getUserEmail(wixClient) || 'Undefined';
+        wixClient.displayName = wixClient.email;
        // userIdInput.value = userDaTA.userEmail;
     } else {
-        throw new Error('Not Wix user', thisUser);
+        throw new Error('Not a Wix user', user);
     }
-    if (thisUser.userEmail.split('@')[1] != 'wix.com') {
-        thisUser.isWix = false;
-        throw new Error('Not Wix user', thisUser);
+    if (wixClient.userEmail.split('@')[1] != 'wix.com') {
+        wixClient.isWix = false;
+        throw new Error('Not a Wix user', wixClient);
     }
+
+    thisUser = {...user, ...wixClient}
     return thisUser;
 }
 

@@ -1,4 +1,4 @@
-import { createElement } from "./utils";
+import { createElement } from "../etc/utils.js";
 
 export const label = (id, label) => {
     return createElement('label', {class:'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70', for: id, innerText: label });
@@ -14,10 +14,10 @@ export const tabButton = ( id, displayName, dataState = 'incative', dataTargetOp
 });
 }
 
-export const buttonStateClasses = () => {
+export const buttonStateClasses = (id) => {
     const stateClasses = {
-    'disabled':'start-clone-button pointer-events-none opacity-70 inline-block rounded bg-gray-200 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-gray-200 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-gray-300 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0',
-    'enabled': 'start-clone-button inline-block rounded bg-sky-300 px-2 py-2 text-sm font-medium text-white text-center  disabled:pointer-events-none disabled:opacity-50 transition hover:scale-110 hover:bg-sky-500 hover:shadow-xl focus:outline-none focus:ring active:bg-sky-500'
+    'disabled':`${id} pointer-events-none opacity-70 inline-block rounded bg-gray-200 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-gray-200 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-gray-300 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0`,
+    'enabled': `${id} inline-block rounded bg-sky-300 px-2 py-2 text-sm font-medium text-white text-center  disabled:pointer-events-none disabled:opacity-50 transition hover:scale-110 hover:bg-sky-500 hover:shadow-xl focus:outline-none focus:ring active:bg-sky-500`
     };
 
     return stateClasses;
@@ -34,7 +34,7 @@ export const collapsedElementTitleWithIcon = (labelText = 'Label is not defined'
 
 
 export const footer = () => {
-    const footer = `<div class="border-t-2 border-neutral-100 px-6 py-4 dark:border-neutral-500">
+    const footer = `<div class="border-b-2 border-neutral-100 px-6 py-4 dark:border-neutral-500">
         <p class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
             <span class="ml-2">
                 Questions? Issues? Porposals?
@@ -45,4 +45,31 @@ export const footer = () => {
 const footerDiv = document.createElement('div');
 footerDiv.insertAdjacentHTML('afterbegin', footer);
 return footerDiv;
+}
+
+
+export const wrongLocationDefaultMessage = () => {
+    const htmlElement = `<div class="border-b-2 border-neutral-100 p4 dark:border-neutral-500">
+    <p class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
+      <span class="ml-2">
+        To use this extension, plese
+        \n navigate to the <a href="https://bo.wix.com" target="_blank" class="text-sky-500 hover:text-sky-600">bo.wix.com</a> page
+        \n (VPN should be connected)
+      </span> 
+    </p>
+    </div>`;
+    const locationDiv = document.createElement('div');
+    locationDiv.insertAdjacentHTML('afterbegin', htmlElement);
+    return locationDiv
+} 
+
+export const spinner = () => {
+    const htmlElement = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+  </svg>`;
+    const div = document.createElement('div');
+    div.insertAdjacentHTML('afterbegin', htmlElement);
+
+  return div;
 }
